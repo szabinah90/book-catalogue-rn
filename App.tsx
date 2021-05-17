@@ -9,6 +9,7 @@ import rootReducer from './src/redux/reducers';
 import thunk from 'redux-thunk';
 import api from './src/utils/api';
 import { Provider } from 'react-redux';
+import { View } from 'react-native';
 
 const Stack = createStackNavigator();
 

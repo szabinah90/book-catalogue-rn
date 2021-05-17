@@ -6,7 +6,7 @@ import { IBook } from '../../../model/book.interface';
 import { BookItem } from './BookItem/BookItem';
 import { connect } from 'react-redux';
 import { useScreenProperties } from '../../../utils/hooks/useScreenProperties';
-import { View } from './Books.styled';
+import { ListContainer } from './Books.styled';
 
 export const Books: React.FC<{ getBooks: any; books: IBook[]; navigation: any }> = ({
   getBooks,
@@ -20,11 +20,11 @@ export const Books: React.FC<{ getBooks: any; books: IBook[]; navigation: any }>
   console.log('screenProperties', screenProperties);
   return (
     <SafeAreaView>
-      <View isPortrait={screenProperties.isPortrait}>
+      <ListContainer isPortrait={screenProperties.isPortrait}>
         {books.map(book => (
           <BookItem key={book.id} book={book} screenProperties={screenProperties} navigation={navigation} />
         ))}
-      </View>
+      </ListContainer>
     </SafeAreaView>
   );
 };

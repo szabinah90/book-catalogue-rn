@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const TouchableHighlight = styled.TouchableHighlight`
+export const TouchableOpacity = styled.TouchableOpacity`
   padding: 10px;
   border-radius: 15px;
 `;
