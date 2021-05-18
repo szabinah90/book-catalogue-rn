@@ -14,7 +14,7 @@ type FlexDirectionType = 'column' | 'row';
 type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export const ScreenContainer = styled.ScrollView`
-  padding: 15px;
+  padding: 10px;
   height: 100%;
   background-color: antiquewhite;
 `;

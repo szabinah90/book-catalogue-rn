@@ -9,11 +9,18 @@ import rootReducer from './src/redux/reducers';
 import thunk from 'redux-thunk';
 import api from './src/utils/api';
 import { Provider } from 'react-redux';
-import { View } from 'react-native';
 
 const Stack = createStackNavigator();
 
 const store = createStore(rootReducer, applyMiddleware(thunk.withExtraArgument({ api })));
+
+/* TODO:
+ * tabbed navigator
+ * purchase book
+ * my books
+ * favorites
+ * read
+ * */
 
 const App = () => {
   return (
@@ -28,3 +35,18 @@ const App = () => {
   );
 };
 export default App;
+
+/*
+* Sima navigáció, headerben vissza gombbal:
+* const Stack = createStackNavigator();
+* <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Books" component={Books} />
+          <Stack.Screen name="Book" component={BookDetails} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
+*
+*
+* */

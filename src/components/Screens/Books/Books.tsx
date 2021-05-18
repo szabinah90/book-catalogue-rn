@@ -6,6 +6,7 @@ import { IBook } from '../../../model/book.interface';
 import { BookItem } from './BookItem/BookItem';
 import { connect } from 'react-redux';
 import { useScreenProperties } from '../../../utils/hooks/useScreenProperties';
+import { ScreenContainer, Flexbox } from '../../common.styled';
 import { ListContainer } from './Books.styled';
 
 export const Books: React.FC<{ getBooks: any; books: IBook[]; navigation: any }> = ({
@@ -20,11 +21,13 @@ export const Books: React.FC<{ getBooks: any; books: IBook[]; navigation: any }>
   console.log('screenProperties', screenProperties);
   return (
     <SafeAreaView>
-      <ListContainer isPortrait={screenProperties.isPortrait}>
-        {books.map(book => (
-          <BookItem key={book.id} book={book} screenProperties={screenProperties} navigation={navigation} />
-        ))}
-      </ListContainer>
+      <ScreenContainer>
+        <Flexbox wrap="wrap" justifyContent="space-between" alignItems="center">
+          {books.map(book => (
+            <BookItem key={book.id} book={book} screenProperties={screenProperties} navigation={navigation} />
+          ))}
+        </Flexbox>
+      </ScreenContainer>
     </SafeAreaView>
   );
 };
