@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { defaultTheme } from './theme-colors';
 
 type JustifyContentType =
   | 'flex-start'
@@ -16,7 +17,7 @@ type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
 export const ScreenContainer = styled.ScrollView`
   padding: 10px;
   height: 100%;
-  background-color: antiquewhite;
+  background-color: ${() => defaultTheme.secondaryLight};
 `;
 
 export const Flexbox = styled.View<{
@@ -24,7 +25,7 @@ export const Flexbox = styled.View<{
   alignItems?: AlignItemsType;
   direction?: FlexDirectionType;
   wrap?: FlexWrapType;
-  width?: string;
+  width?: string | number;
 }>`
   display: flex;
   justify-content: ${props => props?.justifyContent ?? 'flex-start'};

@@ -6,8 +6,7 @@ import { IBook } from '../../../model/book.interface';
 import { BookItem } from './BookItem/BookItem';
 import { connect } from 'react-redux';
 import { useScreenProperties } from '../../../utils/hooks/useScreenProperties';
-import { ScreenContainer, Flexbox } from '../../common.styled';
-import { ListContainer } from './Books.styled';
+import { ScreenContainer, Flexbox } from '../../../styles/common.styled';
 
 export const Books: React.FC<{ getBooks: any; books: IBook[]; navigation: any }> = ({
   getBooks,
