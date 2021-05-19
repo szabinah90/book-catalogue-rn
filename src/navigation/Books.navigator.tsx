@@ -1,9 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Books from '../components/Screens/Books/Books';
-import { BookDetails } from '../components/Screens/BookDetails/BookDetails';
+import BookDetails from '../components/Screens/BookDetails/BookDetails';
 import { defaultTheme } from '../styles/theme-colors';
-import { Icon } from 'react-native-elements';
 
 const BooksStack = createStackNavigator();
 

@@ -1,14 +1,28 @@
-import { Alert, SafeAreaView, Text, View } from 'react-native';
+import { Alert, SafeAreaView, View } from 'react-native';
 import React from 'react';
-import { DescriptionText, DetailsContainer, GenreText, Title, Subtitle } from './BookDetails.styled';
+import {
+  DescriptionText,
+  Details,
+  DetailsContainer,
+  DetailsText,
+  GenreText,
+  Subtitle,
+  Title,
+} from './BookDetails.styled';
 import { Flexbox, ScreenContainer } from '../../../styles/common.styled';
 import { useScreenProperties } from '../../../utils/hooks/useScreenProperties';
 import { Image } from '../Books/BookItem/BookItem.styled';
 import { IconButton } from '../../buttons/IconButton';
 import { Icon } from 'react-native-elements';
 import { defaultTheme } from '../../../styles/theme-colors';
+import { purchaseBook as purchaseBookThunk } from '../../../redux/actions/thunks';
+import { connect } from 'react-redux';
 
-export const BookDetails: React.FC<{ navigation: any; route: any }> = ({ navigation, route }) => {
+export const BookDetails: React.FC<{ navigation: any; route: any; purchaseBook: any }> = ({
+  navigation,
+  route,
+  purchaseBook,
+}) => {
   const { book } = route.params;
   const { screen } = useScreenProperties();
   const width = screen.width / 2;
@@ -21,6 +35,8 @@ export const BookDetails: React.FC<{ navigation: any; route: any }> = ({ navigat
   }, [navigation, book]);*/
 
   const handleBuyBook = () => {
+    console.log('value', book.id);
+    purchaseBook(book.id);
     Alert.alert('Success', `You bought a book: ${book.title}`, [
       {
         text: 'Ok',
@@ -48,9 +64,15 @@ export const BookDetails: React.FC<{ navigation: any; route: any }> = ({ navigat
             <Image source={{ uri: book.cover }} style={{ width, height }} />
           </View>
           <DetailsContainer>
-            <Text>Pages: {book.pages}</Text>
-            <Text>Published: {book.published}</Text>
-            <Text>Ratings: {book.rating}</Text>
+            <DetailsText>
+              Pages: <Details>{book.pages}</Details>
+            </DetailsText>
+            <DetailsText>
+              Published: <Details>{book.published}</Details>
+            </DetailsText>
+            <DetailsText>
+              Ratings: <Details>{book.rating}</Details>
+            </DetailsText>
           </DetailsContainer>
         </Flexbox>
         <Flexbox>
@@ -64,4 +86,11 @@ export const BookDetails: React.FC<{ navigation: any; route: any }> = ({ navigat
   );
 };
 
-/*<IconButton icon="add" />*/
+// @ts-ignore
+const mapDispatchToProps = dispatch => {
+  return {
+    purchaseBook: (bookId: number) => dispatch(purchaseBookThunk(bookId)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(BookDetails);

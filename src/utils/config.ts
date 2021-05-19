@@ -1,1 +1,1 @@
-export const apiURL = 'http://10.0.2.2:3000'; // virtuális telefon miatt!
+export const apiURL = 'http://10.0.2.2:3002'; // virtuális telefon miatt!

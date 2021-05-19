@@ -27,6 +27,17 @@ export const DetailsContainer = styled.View`
   margin-left: 15px;
 `;
 
+export const DetailsText = styled.Text`
+  font-size: 18px;
+  color: ${() => defaultTheme.primaryDark};
+`;
+
+export const Details = styled.Text`
+  font-size: 18px;
+  color: ${() => defaultTheme.secondaryDark};
+  font-weight: bold;
+`;
+
 export const DescriptionText = styled.Text`
   font-size: 20px;
   text-align: justify;

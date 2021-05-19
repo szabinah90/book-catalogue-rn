@@ -1,3 +1,4 @@
 export enum BOOKS {
   GET = 'GET_BOOKS',
+  PURCHASE_BOOK = 'PURCHASE_BOOK',
 }

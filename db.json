@@ -1,48 +1,66 @@
 {
   "books": [
     {
-      "id": 0,
+      "id": 1,
       "title": "Alas, Babylon",
       "author": "Pat Frank",
       "rating": 5,
       "description": "“Alas, Babylon.” Those fateful words heralded the end. When the unthinkable nightmare of nuclear holocaust ravaged the United States, it was instant death for tens of millions of people; for survivors, it was a nightmare of hunger, sickness, and brutality. Overnight, a thousand years of civilization were stripped away.",
       "pages": 323,
       "published": 1959,
-      "genre": ["fiction", "apocalyptic"],
+      "genre": [
+        "fiction",
+        "apocalyptic"
+      ],
       "cover": "https://images-na.ssl-images-amazon.com/images/I/41yjE5E2MUL._SX330_BO1,204,203,200_.jpg"
     },
     {
-      "id": 1,
+      "id": 2,
       "title": "A Canticle for Leibowitz",
       "author": "Walter M. Miller Jr.",
       "rating": 5,
       "description": "In a nightmarish ruined world slowly awakening to the light after sleeping in darkness, the infant rediscoveries of science are secretly nourished by cloistered monks dedicated to the study and preservation of the relics and writings of the blessed Saint Isaac Leibowitz. From here the story spans centuries of ignorance, violence, and barbarism, viewing through a sharp, satirical eye the relentless progression of a human race damned by its inherent humanness to recelebrate its grand foibles and repeat its grievous mistakes.",
       "pages": 334,
       "published": 1959,
-      "genre": ["fiction", "apocalyptic"],
+      "genre": [
+        "fiction",
+        "apocalyptic"
+      ],
       "cover": "https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1450516880l/164154._SY475_.jpg"
     },
     {
-      "id": 2,
+      "id": 3,
       "title": "Lolita",
       "author": "Vladimir Nabokov",
       "rating": 4.5,
       "description": "Humbert Humbert - scholar, aesthete and romantic - has fallen completely and utterly in love with Lolita Haze, his landlady's gum-snapping, silky skinned twelve-year-old daughter. Reluctantly agreeing to marry Mrs Haze just to be close to Lolita, Humbert suffers greatly in the pursuit of romance; but when Lo herself starts looking for attention elsewhere, he will carry her off on a desperate cross-country misadventure, all in the name of Love. Hilarious, flamboyant, heart-breaking and full of ingenious word play, Lolita is an immaculate, unforgettable masterpiece of obsession, delusion and lust. ",
       "pages": 331,
       "published": 1955,
-      "genre": ["fiction", "classics"],
+      "genre": [
+        "fiction",
+        "classics"
+      ],
       "cover": "https://images-na.ssl-images-amazon.com/images/I/41-ygHz9dkL._SX317_BO1,204,203,200_.jpg"
     },
     {
-      "id": 3,
+      "id": 4,
       "title": "Neuromancer",
       "author": "William Gibson",
       "rating": 5,
       "description": "Hotwired to the leading edges of art and technology, Neuromancer is a cyberpunk, science fiction masterpiece—a classic that ranks with 1984 and Brave New World as one of the twentieth century’s most potent visions of the future.",
       "pages": 292,
       "published": 1984,
-      "genre": ["fiction", "cyberpunk"],
+      "genre": [
+        "fiction",
+        "cyberpunk"
+      ],
       "cover": "https://www.cyberpunks.com/wp-content/uploads/2020/06/Neuromancer-Review-William-Gibson-CyberPunks.com_.png"
+    }
+  ],
+  "my-books": [
+    {
+      "id": 1,
+      "favorite": false
     }
   ]
 }

@@ -1,29 +1,25 @@
 import { SafeAreaView } from 'react-native';
-import React, { useEffect } from 'react';
-import { getBooks as getBooksThunk } from '../../../redux/actions/thunks';
+import React from 'react';
 // import { Book } from './Book';
 import { IBook } from '../../../model/book.interface';
 import { BookItem } from './BookItem/BookItem';
 import { connect } from 'react-redux';
 import { useScreenProperties } from '../../../utils/hooks/useScreenProperties';
-import { ScreenContainer, Flexbox } from '../../../styles/common.styled';
+import { Flexbox, ScreenContainer } from '../../../styles/common.styled';
+import { IRootReducer } from '../../../redux/reducers';
+import { getAvailableBooks } from '../../../redux/selectors/selectors';
 
-export const Books: React.FC<{ getBooks: any; books: IBook[]; navigation: any }> = ({
-  getBooks,
-  books,
-  navigation,
-}) => {
+export const Books: React.FC<{ books: IBook[]; navigation: any }> = ({ books, navigation }) => {
   const screenProperties = useScreenProperties();
-  useEffect(() => {
-    getBooks();
-  }, [getBooks]);
-  console.log('screenProperties', screenProperties);
+  const handlePress = (book: IBook) => () => {
+    navigation.navigate('Book', { book: book });
+  };
   return (
     <SafeAreaView>
       <ScreenContainer>
         <Flexbox wrap="wrap" justifyContent="space-between" alignItems="center">
           {books.map(book => (
-            <BookItem key={book.id} book={book} screenProperties={screenProperties} navigation={navigation} />
+            <BookItem key={book.id} book={book} screenProperties={screenProperties} handlePress={handlePress(book)} />
           ))}
         </Flexbox>
       </ScreenContainer>
@@ -46,17 +42,9 @@ export const Books: React.FC<{ getBooks: any; books: IBook[]; navigation: any }>
 
 // @ts-ignore
 const mapStateToProps = (state: IRootReducer) => {
-  const { book } = state;
   return {
-    books: book.items,
+    books: getAvailableBooks(state),
   };
 };
 
-// @ts-ignore
-const mapDispatchToProps = dispatch => {
-  return {
-    getBooks: () => dispatch(getBooksThunk()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Books);
+export default connect(mapStateToProps, null)(Books);
