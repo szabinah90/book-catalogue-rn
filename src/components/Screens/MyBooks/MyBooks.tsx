@@ -18,6 +18,17 @@ export const MyBooks: React.FC<{ getBooks: any; myBooks: IBook[] }> = ({ myBooks
       },
     ]);
   };
+
+  const handleLongPress = (title: string) => () => {
+    // BE: TODO bekötni a BE-t
+    Alert.alert('Favorite', `You Favorited: ${title}`, [
+      {
+        text: 'Ok',
+        onPress: () => console.log('OK Pressed'),
+      },
+    ]);
+  };
+
   return (
     <SafeAreaView>
       <ScreenContainer>
@@ -28,6 +39,7 @@ export const MyBooks: React.FC<{ getBooks: any; myBooks: IBook[] }> = ({ myBooks
               book={book}
               screenProperties={screenProperties}
               handlePress={handlePress(book.title)}
+              handleLongPress={handleLongPress(book.title)}
             />
           ))}
         </Flexbox>

@@ -6,7 +6,7 @@ export const Icon = styled(RneIcon)`
   padding: 15px;
 `;
 
-export const TouchableOpacity = styled.TouchableOpacity`
+export const Pressable = styled.Pressable`
   border-radius: 50px;
   background-color: ${() => defaultTheme.secondary};
   display: flex;

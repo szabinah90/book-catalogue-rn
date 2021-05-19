@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const TouchableOpacity = styled.TouchableOpacity`
+export const Pressable = styled.Pressable`
   margin: 5px;
   border-radius: 15px;
 `;
