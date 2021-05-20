@@ -14,7 +14,7 @@ export const BookItem: React.FC<{
   const height = screen.height / 3 - 20;
 
   return (
-    <Pressable hitSlop={10} onPress={handlePress} onLongPress={handleLongPress}>
+    <Pressable hitSlop={10} onPress={handlePress} onLongPress={handleLongPress} delayLongPress={100}>
       <Image source={{ uri: book.cover }} style={{ width, height }} />
     </Pressable>
   );

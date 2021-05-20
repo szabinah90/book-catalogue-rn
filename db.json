@@ -60,6 +60,10 @@
   "my-books": [
     {
       "id": 1,
+      "favorite": true
+    },
+    {
+      "id": 4,
       "favorite": false
     }
   ]

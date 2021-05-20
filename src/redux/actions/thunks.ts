@@ -1,5 +1,5 @@
 import { getBooksAction } from './book.actions';
-import { purchaseBookAction } from './purchased-book.actions';
+import { purchaseBookAction, toggleFavoriteAction } from './purchased-book.actions';
 import { initAppAction } from './common.actions';
 import { IPurchasedBook } from '../../model/purchased-book.interface';
 
@@ -36,12 +36,14 @@ export const purchaseBook =
     }
   };
 
-export const toggleFavoriteOnPurchasedBook =
-  (data: IPurchasedBook) =>
+export const toggleFavorite =
+  (bookId: number) =>
   async (dispatch: any, getState: any, { api }: any) => {
     try {
-      const response = await api.put(`/my-books/${data.id}`, { body: data });
-      dispatch(purchaseBookAction(response));
+      const state = getState();
+      const element = state.purchasedBook.items.find((i: IPurchasedBook) => i.id === bookId);
+      const response = await api.put(`/my-books/${bookId}`, { body: { ...element, favorite: !element.favorite } });
+      dispatch(toggleFavoriteAction(response));
     } catch (apiError) {
       console.error(apiError);
     }

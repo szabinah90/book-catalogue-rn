@@ -2,13 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { IRootReducer } from '../../../redux/reducers';
 import { getPurchasedBooks } from '../../../redux/selectors/selectors';
-import { IBook } from '../../../model/book.interface';
-import { Alert, SafeAreaView } from 'react-native';
+import { Alert, SafeAreaView, View } from 'react-native';
 import { Flexbox, ScreenContainer } from '../../../styles/common.styled';
 import { BookItem } from '../Books/BookItem/BookItem';
 import { useScreenProperties } from '../../../utils/hooks/useScreenProperties';
+import { toggleFavorite as toggleFavoriteThunk } from '../../../redux/actions/thunks';
+import { IMyPurchasedBook } from '../../../model/my-purchased-book.interface';
+import { defaultTheme } from '../../../styles/theme-colors';
+import { Icon } from 'react-native-elements';
 
-export const MyBooks: React.FC<{ getBooks: any; myBooks: IBook[] }> = ({ myBooks }) => {
+export const MyBooks: React.FC<{ getBooks: any; myBooks: IMyPurchasedBook[]; toggleFavorite: any }> = ({
+  myBooks,
+  toggleFavorite,
+}) => {
   const screenProperties = useScreenProperties();
   const handlePress = (title: string) => () => {
     Alert.alert('Read', `You Read: ${title}`, [
@@ -19,14 +25,8 @@ export const MyBooks: React.FC<{ getBooks: any; myBooks: IBook[] }> = ({ myBooks
     ]);
   };
 
-  const handleLongPress = (title: string) => () => {
-    // BE: TODO bekötni a BE-t
-    Alert.alert('Favorite', `You Favorited: ${title}`, [
-      {
-        text: 'Ok',
-        onPress: () => console.log('OK Pressed'),
-      },
-    ]);
+  const handleLongPress = (bookId: number) => () => {
+    toggleFavorite(bookId);
   };
 
   return (
@@ -34,13 +34,19 @@ export const MyBooks: React.FC<{ getBooks: any; myBooks: IBook[] }> = ({ myBooks
       <ScreenContainer>
         <Flexbox wrap="wrap" justifyContent="space-between" alignItems="center">
           {myBooks.map(book => (
-            <BookItem
-              key={book.id}
-              book={book}
-              screenProperties={screenProperties}
-              handlePress={handlePress(book.title)}
-              handleLongPress={handleLongPress(book.title)}
-            />
+            <View key={book.id}>
+              <BookItem
+                book={book}
+                screenProperties={screenProperties}
+                handlePress={handlePress(book.title)}
+                handleLongPress={handleLongPress(book.id)}
+              />
+              {book.isFavorite ? (
+                <Icon name="favorite" type="material" color={defaultTheme.secondaryDark} />
+              ) : (
+                <Icon name="favorite-border" type="material" color={defaultTheme.secondaryDark} />
+              )}
+            </View>
           ))}
         </Flexbox>
       </ScreenContainer>
@@ -55,4 +61,11 @@ const mapStateToProps = (state: IRootReducer) => {
   };
 };
 
-export default connect(mapStateToProps, null)(MyBooks);
+// @ts-ignore
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleFavorite: (bookId: number) => dispatch(toggleFavoriteThunk(bookId)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyBooks);
