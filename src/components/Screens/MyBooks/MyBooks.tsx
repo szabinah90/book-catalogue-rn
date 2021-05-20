@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { IRootReducer } from '../../../redux/reducers';
 import { getPurchasedBooks } from '../../../redux/selectors/selectors';
@@ -10,6 +10,7 @@ import { toggleFavorite as toggleFavoriteThunk } from '../../../redux/actions/th
 import { IMyPurchasedBook } from '../../../model/my-purchased-book.interface';
 import { defaultTheme } from '../../../styles/theme-colors';
 import { Icon } from 'react-native-elements';
+import { Snackbar } from '../../snackbar/Snackbar';
 
 export const MyBooks: React.FC<{ getBooks: any; myBooks: IMyPurchasedBook[]; toggleFavorite: any }> = ({
   myBooks,
@@ -25,8 +26,15 @@ export const MyBooks: React.FC<{ getBooks: any; myBooks: IMyPurchasedBook[]; tog
     ]);
   };
 
+  const [showSnackbar, setShowSnackbar] = useState(false);
+
   const handleLongPress = (bookId: number) => () => {
     toggleFavorite(bookId);
+    setShowSnackbar(true);
+  };
+
+  const handleSnackbarPress = () => {
+    setShowSnackbar(false);
   };
 
   return (
@@ -49,6 +57,14 @@ export const MyBooks: React.FC<{ getBooks: any; myBooks: IMyPurchasedBook[]; tog
             </View>
           ))}
         </Flexbox>
+        {showSnackbar && (
+          <Snackbar
+            text="Ez itt egy snackbar"
+            color={defaultTheme.primary}
+            buttonText="OK"
+            onPress={handleSnackbarPress}
+          />
+        )}
       </ScreenContainer>
     </SafeAreaView>
   );
